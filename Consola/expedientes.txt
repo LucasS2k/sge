@@ -1,0 +1,1 @@
+78dd1456-99d2-4589-9ffe-d30bb3ff8c64,78dd1456-99d2-4589-9ffe-d30bb3ff8c64,Caratula { Valor = Expediente de prueba },14/5/2026 22:35:11,14/5/2026 22:35:11,92c31061-27fd-421d-b361-1fc9d7293736,RecienIniciado

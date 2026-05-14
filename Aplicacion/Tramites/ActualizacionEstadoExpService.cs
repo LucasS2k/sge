@@ -11,19 +11,20 @@ public class ActualizacionEstadoExpService
         _tramiteRepo = tramiteRepo;
     }
 
-    public void Ejecutar(Guid expedienteId, Guid idUsuario)
+    public ActualizacionEstadoExpResponse Ejecutar(Guid expedienteId, Guid idUsuario)
     {
         var expediente = _expedienteRepo.ObtenerExpedientePorId(expedienteId) 
             ?? throw new NotFoundException("No existe el expediente solicitado.");
         var tramites = _tramiteRepo.ObtenerTodosLosTramites();
 
         var ultimoTramite = tramites.OrderByDescending(t => t.FechaCreacion).FirstOrDefault();
-
+        var estado = expediente.Estado.ToString();
         bool huboCambio = expediente.ActualizarEstado(ultimoTramite?.Etiqueta, idUsuario);
 
         if (huboCambio)
         {
             _expedienteRepo.ModificarExpediente(expediente);
         }
+        return new ActualizacionEstadoExpResponse(expedienteId, estado, huboCambio);
     }
 }

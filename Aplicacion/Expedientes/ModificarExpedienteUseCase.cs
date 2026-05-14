@@ -12,15 +12,14 @@ public class ModificarExpedienteUseCase
         _autorizacionService = autorizacionService;
     }
 
-    public void Ejecutar(ModificarExpedienteRequest request)
+    public ModificarExpedienteResponse Ejecutar(ModificarExpedienteRequest request)
     {
         if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.ExpedienteModificacion))
             throw new AuthorizationException("No posee permisos para modificar expedientes");
 
         var expediente = _expedienteRepo.ObtenerExpedientePorId(request.IdExpediente) 
             ?? throw new NotFoundException("No existe el expediente solicitado");
-
-        _expedienteRepo.ModificarCaratula(request.NuevaCaratula);
         _expedienteRepo.ModificarExpediente(expediente);
+        return new ModificarExpedienteResponse(request.IdExpediente, true);
     }
 }

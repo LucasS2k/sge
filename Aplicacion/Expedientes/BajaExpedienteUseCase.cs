@@ -17,7 +17,7 @@ public class EliminarExpedienteUseCase
         _autorizacionService = autorizacionService;
     }
 
-    public void Ejecutar(BajaExpedienteRequest request)
+    public BajaExpedienteResponse Ejecutar(BajaExpedienteRequest request)
     {
         if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.ExpedienteBaja))
         {
@@ -29,5 +29,6 @@ public class EliminarExpedienteUseCase
             _tramiteRepo.EliminarTramite(tramite.Id);
         }
         _expedienteRepo.EliminarExpediente(request.IdExpediente);
+        return new BajaExpedienteResponse(request.IdExpediente, true);
     }
 }

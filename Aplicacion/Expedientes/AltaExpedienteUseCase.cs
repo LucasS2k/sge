@@ -12,7 +12,7 @@ public class AltaExpedienteUseCase
         _autorizacionService = autorizacionService;
     }
 
-    public void Ejecutar(AltaExpedienteRequest request)
+    public AltaExpedienteResponse Ejecutar(AltaExpedienteRequest request)
     {
         if(!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.ExpedienteAlta))
         {
@@ -21,5 +21,7 @@ public class AltaExpedienteUseCase
         var caratula = new Caratula(request.Caratula);
         var nuevoExpediente = new Expediente(caratula, request.IdUsuario);
         _expedienteRepo.AgregarExpediente(nuevoExpediente);
+
+        return new AltaExpedienteResponse(nuevoExpediente.Id, caratula.ToString(), nuevoExpediente.FechaCreacion);
     }
 }

@@ -7,4 +7,8 @@ public record class Caratula
             throw new DomainException("La caratula no puede ser nula o estar vacía");
         Valor = valor;
     }
+    public static Caratula Parse(string valor)
+    {
+        return new Caratula(valor);
+    }
 }

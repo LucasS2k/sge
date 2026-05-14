@@ -16,7 +16,7 @@ public class BajaTramiteUseCase
         _authService = authService;
     }
 
-    public void Ejecutar(BajaTramiteRequest request)
+    public BajaTramiteResponse Ejecutar(BajaTramiteRequest request)
     {
         if (!_authService.PoseeElPermiso(request.IdUsuario, Permiso.TramiteBaja))
         {
@@ -26,5 +26,6 @@ public class BajaTramiteUseCase
             ?? throw new NotFoundException("No existe el tramite");
         _tramiteRepo.EliminarTramite(request.IdTramite);
         _estadoService.Ejecutar(tramite.ExpedienteId, request.IdUsuario);
+        return new BajaTramiteResponse(request.IdTramite, true);
     }
 }

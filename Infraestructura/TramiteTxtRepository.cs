@@ -31,13 +31,28 @@ public class TramiteTxtRepository : ITramiteRepository
     }
 
     public IEnumerable<Tramite> ObtenerTramitesPorExpedienteId(Guid expedienteId)
+{
+    var lista = new List<Tramite>();
+    if (!File.Exists(Archivo)) return lista;
+
+    using var sr = new StreamReader(Archivo);
+    while (!sr.EndOfStream)
     {
-        return ObtenerTodosLosTramites().Where(t => t.ExpedienteId == expedienteId);
+        var linea = sr.ReadLine();
+        if (string.IsNullOrWhiteSpace(linea)) continue;
+        var datos = linea.Split(',');
+        var idExpEnLinea = Guid.Parse(datos[1]); 
+        if (idExpEnLinea == expedienteId)
+        {
+            lista.Add(ReconstruirTramite(linea));
+        }
     }
+    return lista;
+}
 
     public Tramite? ObtenerTramitePorId(Guid id)
     {
-        return ObtenerTodosLosTramites().First(t => t.Id == id);
+        return ObtenerTodosLosTramites().FirstOrDefault(t => t.Id == id); //si no lo encuentra da un null que es mas util
     }
 
     public void ModificarTramite(Tramite tramite)
@@ -67,22 +82,24 @@ public class TramiteTxtRepository : ITramiteRepository
             }
         }
 
-        if (!encontrado)
+        if (encontrado)
+        {
+            File.Delete(Archivo);
+            File.Move(auxiliar, Archivo);
+        }
+        else
         {
             File.Delete(auxiliar);
-            throw new NotFoundException(" tramite");
+             throw new NotFoundException("Tramite no encontrado");
         }
-
-        ActualizarArchivo(auxiliar);
     }
-
     public void EliminarTramite(Guid id)
     {
         string auxiliar = "tramites_aux.txt";
         bool encontrado = false;
 
-        using (var sr = new StreamReader(Archivo))
-        using (var sw = new StreamWriter(auxiliar))
+        using var sr = new StreamReader(Archivo);
+        using var sw = new StreamWriter(auxiliar);
         {
             while (!sr.EndOfStream)
             {
@@ -102,21 +119,18 @@ public class TramiteTxtRepository : ITramiteRepository
             }
         }
 
-        if (!encontrado)
+        if (encontrado)
+        {
+            File.Delete(Archivo);
+            File.Move(auxiliar, Archivo);
+        } else
         {
             File.Delete(auxiliar);
-            throw new NotFoundException("Tramite no encontrado");
+             throw new NotFoundException("Tramite no encontrado");
         }
-
-        ActualizarArchivo(auxiliar);
-    }
-    private void ActualizarArchivo(string auxiliar)
-    {
-        File.Delete(Archivo);
-        File.Move(auxiliar, Archivo);
     }
 
-    private string Convertir(Tramite t)
+    private static string Convertir(Tramite t)
     {
         return $"{t.Id},{t.ExpedienteId},{t.Etiqueta},{t.Contenido},{t.FechaCreacion},{t.UsuarioUltimoCambio}";
     }

@@ -9,7 +9,7 @@ public class Expediente
     public DateTime FechaUltimaModificacion{ get; private set; }
     public Guid UsuarioUltimoCambio{ get; private set; }
     public EstadoExpediente Estado{ get; private set; }
-
+//constructor base
     public Expediente( Caratula caratula, Guid usuarioUltimoCambio)
     {
         if (usuarioUltimoCambio == Guid.Empty)
@@ -21,6 +21,17 @@ public class Expediente
         FechaUltimaModificacion = DateTime.UtcNow;
         UsuarioUltimoCambio = usuarioUltimoCambio;
         Estado = EstadoExpediente.RecienIniciado;
+    }
+//constructor de 7 argumentos para reconstrucción
+    public Expediente(Guid id, Guid expedienteId, Caratula caratula, DateTime fechaCreacion, DateTime fechaUltimaModificacion, Guid usuarioUltimoCambio, EstadoExpediente estado)
+    {
+        Id = id;
+        ExpedienteId = expedienteId;
+        Caratula = caratula;
+        FechaCreacion = fechaCreacion;
+        FechaUltimaModificacion = fechaUltimaModificacion;
+        UsuarioUltimoCambio = usuarioUltimoCambio;
+        Estado = estado;
     }
 
     public void ModificarCaratula(Caratula nuevaCaratula, Guid IdUsuario)
