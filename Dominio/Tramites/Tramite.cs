@@ -9,7 +9,7 @@ public class Tramite
     public DateTime FechaCreacion{ get; init; }
     public DateTime FechaUltimaModificacion{ get; private set; }
     public Guid UsuarioUltimoCambio{ get; private set; }
-
+    //constructor para crear un nuevo tramite
     public Tramite(Guid expedienteId, EstadoTramite? etiqueta, ContenidoTramite contenido, Guid usuarioUltimoCambio)
     {
         if (usuarioUltimoCambio == Guid.Empty)
@@ -23,5 +23,15 @@ public class Tramite
         FechaCreacion = DateTime.UtcNow;
         FechaUltimaModificacion = DateTime.UtcNow;
         UsuarioUltimoCambio = usuarioUltimoCambio;
+    }
+    //reconstructor de 6 parametros para cuando leemos en infraestructura
+    public Tramite(Guid id, Guid expedienteId, EstadoTramite etiqueta, ContenidoTramite contenido, DateTime fecha, Guid usuarioId)
+    {
+        Id = id;
+        ExpedienteId = expedienteId;
+        Etiqueta = etiqueta;
+        Contenido = contenido;
+        FechaCreacion = fecha;
+        UsuarioUltimoCambio = usuarioId;
     }
 }

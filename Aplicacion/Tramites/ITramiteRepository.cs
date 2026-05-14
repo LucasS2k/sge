@@ -6,4 +6,5 @@ public interface ITramiteRepository
     void EliminarTramite(Guid id);
     Tramite? ObtenerTramitePorId(Guid id);
     IEnumerable<Tramite> ObtenerTodosLosTramites();
+    IEnumerable<Tramite> ObtenerTramitesPorExpedienteId(Guid expedienteId);
 }
