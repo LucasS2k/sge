@@ -13,6 +13,8 @@ public class Program
         Guid usuario1 = Guid.NewGuid();
         Guid usuario2 = Guid.NewGuid();
         Guid usuario3 = Guid.NewGuid();
+        //guardado de guid de expediente valido
+        Guid idExpedienteValido = Guid.Empty;
         //repositorios y servicios
         var expedienteRepo = new ExpedienteTxtRepository();
         var tramiteRepo = new TramiteTxtRepository();
@@ -32,45 +34,108 @@ public class Program
 
         //enums validos:   EscritoPresentado, PaseAEstudio, Despacho, Resolucion, Notificacion, PaseAlArchivo 
         //ejemplo de uso
-        // var tramite1 = altaTramiteUseCase.Ejecutar(new AltaTramiteRequest(Guid.NewGuid(), "EscritoPresentado", new ContenidoTramite("Se crea el tramite"), Guid.NewGuid()));
-        // var tramite2 = altaTramiteUseCase.Ejecutar(new AltaTramiteRequest(Guid.NewGuid(), "Notificacion", new ContenidoTramite("Se actualiza el tramite"), Guid.NewGuid()));
+        Test("Crear expediente valido", () =>
+        {
+            var solicitud = new AltaExpedienteRequest("Expediente valido", usuario1);
+            var respuesta = altaExpedienteUseCase.Ejecutar(solicitud); 
+            idExpedienteValido = respuesta.Id; 
+            Console.WriteLine($"Id generado: {idExpedienteValido}"); //este id lo usamos para testear
+        });
         
         
-        
-        Test("crear caratula vacia", () =>
+        Test("Crear expediente caratula vacia", () =>
         {
            var solicitud = new AltaExpedienteRequest("", usuario1);
            altaExpedienteUseCase.Ejecutar(solicitud); 
         });
         
-        Test("crear expediente con caratula", () =>
+        Test("Crear expediente con caratula", () =>
         {
            var solicitud = new AltaExpedienteRequest("Expediente de prueba", usuario1);
            var respuesta = altaExpedienteUseCase.Ejecutar(solicitud); 
            Console.WriteLine($"Expediente creado con ID: {respuesta.Id}");
         });
         
+        Test ("Modificar caratula del expediente existente", () =>
+        {
+            var solicitud = new ModificarExpedienteRequest(
+                idExpedienteValido,"Caratula modificada", usuario1
+            );
+            modificarCaratulaExpedienteUseCase.Ejecutar(solicitud);
+            Console.WriteLine("Caratula modificada exitosamente");
+        });
+
+        Test ("Listar expedientes",()=>
+        {
+            var response = obtenerExpedientesUseCase.Ejecutar(new ListarExpedientesRequest(usuario1));
+            if (!response.Expedientes.Any())
+            {
+                Console.WriteLine("No hay expedientes");
+            }else
+            {
+                foreach(var e in response.Expedientes)
+                {
+                    Console.WriteLine($"id: {e.Id} caratula: {e.Caratula} estado: {e.Estado} ");
+                }
+            }
+        });
         
+        Test("Crear tramite", () =>{
+        var solicitud = new AltaTramiteRequest(
+        idExpedienteValido,           
+        "EscritoPresentado",         
+        new ContenidoTramite("Ejemplo de contenido"), 
+        usuario1
+        );
+            altaTramiteUseCase.Ejecutar(solicitud);
+        });
         
-        
-        
+        Test ("Tramite a un Id desconocido", () =>
+        {
+            var solicitud = new AltaTramiteRequest(
+        new Guid(), //Generamos un guid nuevo que no matchea          
+        "EscritoPresentado",         
+        new ContenidoTramite("Ejemplo de contenido"), 
+        usuario1
+        );
+            altaTramiteUseCase.Ejecutar(solicitud);
+        });
+        Test ("Listar tramites", () =>
+        {
+            var response = obtenerTramitesUseCase.Ejecutar(new ListarTramitesRequest(usuario1));
+            if (!response.Tramites.Any())
+            {
+                Console.WriteLine("No hay tramites para listar");
+            } else
+            {
+                foreach (var t in response.Tramites)
+                {
+                    Console.WriteLine($"Id: {t.Id} Etiqueta: {t.Etiqueta} usuario: {t.IdUsuario} fecha creacion: {t.FechaCreacion}");
+                }
+            }
+        });
         static void Test (string accion, Action funcionalidad) //Action representa un metodo
         {
             try
             {
                 funcionalidad();
+                Console.WriteLine("Exitoso");
             }
             catch (AuthorizationException ex)
             {
-                Console.WriteLine($"Error al {accion}: {ex.Message}");
+                Console.WriteLine($"Error al intentar: {accion}: {ex.Message}");
             }
             catch (NotFoundException ex)
             {
-                Console.WriteLine($"Error al {accion}: {ex.Message}");
+                Console.WriteLine($"Error al intentar: {accion}: {ex.Message}");
             }
             catch (DomainException ex)
             {
-                Console.WriteLine($"Error al {accion}: {ex.Message}");
+                Console.WriteLine($"Error al intentar: {accion}: {ex.Message}");
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("Excepcion no manejada");
             }
         }
     }
