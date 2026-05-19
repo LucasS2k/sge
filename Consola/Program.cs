@@ -41,8 +41,7 @@ public class Program
             idExpedienteValido = respuesta.Id; 
             Console.WriteLine($"Id generado: {idExpedienteValido}"); //este id lo usamos para testear
         });
-        
-        
+
         Test("Crear expediente caratula vacia", () =>
         {
            var solicitud = new AltaExpedienteRequest("", usuario1);
@@ -84,22 +83,24 @@ public class Program
         var solicitud = new AltaTramiteRequest(
         idExpedienteValido,           
         "EscritoPresentado",         
-        new ContenidoTramite("Ejemplo de contenido"), 
+        new ContenidoTramite("Contenido de ejemplo"), 
         usuario1
         );
             altaTramiteUseCase.Ejecutar(solicitud);
+            Console.WriteLine("Tramite creado exitosamente");
         });
         
         Test ("Tramite a un Id desconocido", () =>
         {
             var solicitud = new AltaTramiteRequest(
-        new Guid(), //Generamos un guid nuevo que no matchea          
+        new Guid(), //Generamos un guid nuevo que no coincide con ningun expediente creado        
         "EscritoPresentado",         
-        new ContenidoTramite("Ejemplo de contenido"), 
+        new ContenidoTramite("Contenido de ejemplo"), 
         usuario1
         );
             altaTramiteUseCase.Ejecutar(solicitud);
         });
+
         Test ("Listar tramites", () =>
         {
             var response = obtenerTramitesUseCase.Ejecutar(new ListarTramitesRequest(usuario1));
