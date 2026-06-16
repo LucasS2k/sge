@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\consola\\Consola.csproj": {}
+    "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Consola\\Consola.csproj": {}
   },
   "projects": {
     "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Aplicacion\\Aplicacion.csproj": {
@@ -341,14 +341,14 @@
         }
       }
     },
-    "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\consola\\Consola.csproj": {
+    "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Consola\\Consola.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\consola\\Consola.csproj",
+        "projectUniqueName": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Consola\\Consola.csproj",
         "projectName": "Consola",
-        "projectPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\consola\\Consola.csproj",
+        "projectPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Consola\\Consola.csproj",
         "packagesPath": "C:\\Users\\juanp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\consola\\obj\\",
+        "outputPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Consola\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\juanp\\AppData\\Roaming\\NuGet\\NuGet.Config"

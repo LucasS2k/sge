@@ -109,7 +109,7 @@ public class ExpedienteTxtRepository : IExpedienteRepository
 
     private string Convertir(Expediente expediente)
     {
-        return $"{expediente.Id},{expediente.ExpedienteId},{expediente.Caratula},{expediente.FechaCreacion},{expediente.FechaUltimaModificacion},{expediente.UsuarioUltimoCambio},{expediente.Estado}";
+        return $"{expediente.Id},{expediente.ExpedienteId},{expediente.Caratula.Valor},{expediente.FechaCreacion},{expediente.FechaUltimaModificacion},{expediente.UsuarioUltimoCambio},{expediente.Estado}";
     }
     private  Expediente ReconstruirExpediente(string linea)
     {
@@ -117,7 +117,7 @@ public class ExpedienteTxtRepository : IExpedienteRepository
         return new Expediente
         (Guid.Parse(datos[0]),
             Guid.Parse(datos[1]),
-            Caratula.Parse(datos[2]),
+            new Caratula(datos[2]),
             DateTime.Parse(datos[3]),
             DateTime.Parse(datos[4]),
             Guid.Parse(datos[5]),

@@ -1,4 +1,4 @@
-namespace Dominio.Comun;
+namespace Aplicacion.Comun;
 public class NotFoundException : Exception
 {
     public NotFoundException(string message) : base(message)

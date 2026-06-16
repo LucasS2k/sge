@@ -1,6 +1,6 @@
 namespace Aplicacion.Tramites;
-
-using Aplicacion.Tramites;
+using Aplicacion.Autorizacion;
+using Aplicacion.Comun;
 using Dominio.Autorizacion;
 
 public class ListarTramitesUseCase
@@ -17,7 +17,7 @@ public class ListarTramitesUseCase
     {
         if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.TramiteListar))
         {
-            throw new AuthorizationException("consultar tramites");
+            throw new AuthorizationException("no posee permiso para consultar tramites");
         }
         var entidades = _tramiteRepo.ObtenerTodosLosTramites();
         var datos = entidades.Select(t => new TramiteResponse(
