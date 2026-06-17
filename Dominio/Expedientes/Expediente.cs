@@ -1,4 +1,4 @@
-
+using Dominio.Expedientes;
 using Dominio.Tramites;
 public class Expediente
 {

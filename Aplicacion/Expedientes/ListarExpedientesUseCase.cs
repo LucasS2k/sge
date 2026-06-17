@@ -1,7 +1,7 @@
 namespace Aplicacion.Expedientes;
 using Aplicacion.Autorizacion;
 using Dominio.Autorizacion;
-using Dominio.Comun;
+using Aplicacion.Comun;
 
 public class ListarExpedientesUseCase
 {

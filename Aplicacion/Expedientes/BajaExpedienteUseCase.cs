@@ -2,15 +2,15 @@ namespace Aplicacion.Expedientes;
 using Aplicacion.Tramites;
 using Aplicacion.Comun;
 using Dominio.Autorizacion;
-
-public class EliminarExpedienteUseCase
+using Aplicacion.Unidad;
+public class BajaExpedienteUseCase
 {
     private readonly IExpedienteRepository _expedienteRepo;
     private readonly ITramiteRepository _tramiteRepo;
     private readonly IAutorizacionService _autorizacionService;
     private readonly IUnidadDeTrabajo _unidadDeTrabajo;
 
-    public EliminarExpedienteUseCase(
+    public BajaExpedienteUseCase(
         IExpedienteRepository expedienteRepo,
         ITramiteRepository tramiteRepo,
         IAutorizacionService autorizacionService,

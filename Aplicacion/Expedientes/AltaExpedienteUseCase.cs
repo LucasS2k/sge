@@ -2,6 +2,7 @@ namespace Aplicacion.Expedientes;
 using Aplicacion.Autorizacion;
 using Aplicacion.Comun;
 using Dominio.Autorizacion;
+using Aplicacion.Unidad;
 public class AltaExpedienteUseCase
 {
     private readonly IExpedienteRepository _expedienteRepo;

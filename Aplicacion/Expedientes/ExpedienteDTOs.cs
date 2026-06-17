@@ -1,3 +1,4 @@
+using Aplicacion.Tramites;
 namespace Aplicacion.Expedientes;
 
 //requests
@@ -5,8 +6,16 @@ public record AltaExpedienteRequest(string Caratula, Guid IdUsuario);
 
 public record BajaExpedienteRequest(Guid IdExpediente, Guid IdUsuario);
 
-public record ModificarExpedienteRequest(Guid IdExpediente, string NuevaCaratula, Guid IdUsuario);
+/// <summary>
+/// public record ModificarExpedienteRequest(Guid IdExpediente, string NuevaCaratula, Guid IdUsuario);
+/// </summary>
+/// <param name="IdExpediente"></param>
+/// <param name="NuevaCaratula"></param>
+/// <param name="IdUsuario"></param>
 
+public record ModificarCaratulaExpedienteRequest(Guid IdExpediente, string NuevaCaratula, Guid IdUsuario);
+public record ModificarEstadoExpedienteRequest(Guid IdExpediente, string NuevoEstado, Guid IdUsuario);
+public record ObtenerExpedienteRequest(Guid IdExpediente, Guid IdUsuario);
 public record ListarExpedientesRequest(Guid IdUsuario);
 
 //responses
@@ -29,3 +38,12 @@ public record ListarExpedientesResponse(IEnumerable<ExpedienteResponse> Expedien
 public record ModificarExpedienteResponse(Guid Id, bool Exito);
 
 public record ModificarCaratulaExpedienteResponse(Guid Id, bool Exito);
+
+public record ObtenerExpedienteResponse(
+    Guid Id,
+    string Caratula,
+    string Estado,
+    DateTime FechaCreacion,
+    Guid IdUsuario,
+    IEnumerable<TramiteResponse> Tramites
+);

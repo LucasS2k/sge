@@ -1,3 +1,4 @@
+namespace Dominio.Expedientes;
 public enum EstadoExpediente
 {
     RecienIniciado,

@@ -2,7 +2,7 @@ namespace Aplicacion.Expedientes;
 using Dominio.Autorizacion;
 using Aplicacion.Autorizacion;
 using Aplicacion.Comun;
-
+using Aplicacion.Unidad;
 public class ModificarCaratulaExpedienteUseCase
 {
     private readonly IExpedienteRepository _expedienteRepo;
@@ -19,7 +19,7 @@ public class ModificarCaratulaExpedienteUseCase
         _unidadDeTrabajo = unidadDeTrabajo;
     }
 
-    public ModificarCaratulaExpedienteResponse Ejecutar(ModificarExpedienteRequest request)
+    public ModificarCaratulaExpedienteResponse Ejecutar(ModificarCaratulaExpedienteRequest request)
     {
         if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.ExpedienteModificacion))
             throw new AuthorizationException("No posee permisos para modificar expedientes.");

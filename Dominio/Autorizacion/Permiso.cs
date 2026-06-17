@@ -10,10 +10,10 @@ public enum Permiso
     ExpedienteAlta,
     ExpedienteBaja,
     ExpedienteModificacion,
-    ExpedienteListar
-//     //provisorio
-//     UsuarioAlta,
-//     UsuarioBaja,
-//     UsuarioModificacion,
-//     UsuarioListar
+    ExpedienteListar,
+     //provisorio
+     UsuarioAlta,
+     UsuarioBaja,
+     UsuarioModificacion,
+     UsuarioListar
  }

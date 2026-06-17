@@ -1,6 +1,6 @@
 namespace Aplicacion.Tramites;
 using Aplicacion.Expedientes;
-using Dominio.Comun;
+using Aplicacion.Comun;
 public class ActualizacionEstadoExpService
 {
     private readonly IExpedienteRepository _expedienteRepo;

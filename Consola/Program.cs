@@ -1,4 +1,4 @@
-﻿namespace Consola;
+﻿namespace WebApi;
 
 using Aplicacion.Expedientes;
 using Aplicacion.Tramites;
