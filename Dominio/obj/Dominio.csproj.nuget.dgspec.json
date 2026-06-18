@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj": {}
+    "C:\\SGE\\Dominio\\Dominio.csproj": {}
   },
   "projects": {
-    "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj": {
+    "C:\\SGE\\Dominio\\Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj",
+        "projectUniqueName": "C:\\SGE\\Dominio\\Dominio.csproj",
         "projectName": "Dominio",
-        "projectPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj",
+        "projectPath": "C:\\SGE\\Dominio\\Dominio.csproj",
         "packagesPath": "C:\\Users\\juanp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\obj\\",
+        "outputPath": "C:\\SGE\\Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\juanp\\AppData\\Roaming\\NuGet\\NuGet.Config"

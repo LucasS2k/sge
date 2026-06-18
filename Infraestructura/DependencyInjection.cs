@@ -5,7 +5,7 @@ using Aplicacion.Unidad;
 using Aplicacion.Expedientes;
 using Aplicacion.Tramites;
 using Aplicacion.Usuarios;
-
+using Aplicacion.Autorizacion;
 namespace Infraestructura;
 
 public static class DependencyInjection
@@ -16,7 +16,6 @@ public static class DependencyInjection
         services.AddDbContext<SgeContext>(opciones =>
             opciones.UseSqlite(connectionString));
         services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
-
         services.AddScoped<IExpedienteRepository, ExpedienteRepository>();
         services.AddScoped<ITramiteRepository, TramiteRepository>();
         services.AddScoped<IUsuarioRepository, UsuarioRepository>();
@@ -24,4 +23,6 @@ public static class DependencyInjection
         services.AddScoped<ITokenProvider, TokenProvider>();
         return services;
     }
+
+    
 }

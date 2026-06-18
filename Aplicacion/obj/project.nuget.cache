@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "IMnfECpiNI4=",
+  "dgSpecHash": "cbwFOLlw5MI=",
   "success": true,
-  "projectFilePath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Aplicacion\\Aplicacion.csproj",
+  "projectFilePath": "C:\\SGE\\Aplicacion\\Aplicacion.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\juanp\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\10.0.9\\microsoft.extensions.dependencyinjection.abstractions.10.0.9.nupkg.sha512"
   ],

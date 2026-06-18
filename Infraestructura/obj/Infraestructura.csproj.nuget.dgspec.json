@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Infraestructura\\Infraestructura.csproj": {}
+    "C:\\SGE\\Infraestructura\\Infraestructura.csproj": {}
   },
   "projects": {
-    "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Aplicacion\\Aplicacion.csproj": {
+    "C:\\SGE\\Aplicacion\\Aplicacion.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Aplicacion\\Aplicacion.csproj",
+        "projectUniqueName": "C:\\SGE\\Aplicacion\\Aplicacion.csproj",
         "projectName": "Aplicacion",
-        "projectPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Aplicacion\\Aplicacion.csproj",
+        "projectPath": "C:\\SGE\\Aplicacion\\Aplicacion.csproj",
         "packagesPath": "C:\\Users\\juanp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Aplicacion\\obj\\",
+        "outputPath": "C:\\SGE\\Aplicacion\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\juanp\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -26,8 +26,8 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj": {
-                "projectPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj"
+              "C:\\SGE\\Dominio\\Dominio.csproj": {
+                "projectPath": "C:\\SGE\\Dominio\\Dominio.csproj"
               }
             }
           }
@@ -347,14 +347,14 @@
         }
       }
     },
-    "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj": {
+    "C:\\SGE\\Dominio\\Dominio.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj",
+        "projectUniqueName": "C:\\SGE\\Dominio\\Dominio.csproj",
         "projectName": "Dominio",
-        "projectPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj",
+        "projectPath": "C:\\SGE\\Dominio\\Dominio.csproj",
         "packagesPath": "C:\\Users\\juanp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\obj\\",
+        "outputPath": "C:\\SGE\\Dominio\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\juanp\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -680,14 +680,14 @@
         }
       }
     },
-    "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Infraestructura\\Infraestructura.csproj": {
+    "C:\\SGE\\Infraestructura\\Infraestructura.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Infraestructura\\Infraestructura.csproj",
+        "projectUniqueName": "C:\\SGE\\Infraestructura\\Infraestructura.csproj",
         "projectName": "Infraestructura",
-        "projectPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Infraestructura\\Infraestructura.csproj",
+        "projectPath": "C:\\SGE\\Infraestructura\\Infraestructura.csproj",
         "packagesPath": "C:\\Users\\juanp\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Infraestructura\\obj\\",
+        "outputPath": "C:\\SGE\\Infraestructura\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\juanp\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -702,11 +702,11 @@
           "net10.0": {
             "targetAlias": "net10.0",
             "projectReferences": {
-              "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Aplicacion\\Aplicacion.csproj": {
-                "projectPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Aplicacion\\Aplicacion.csproj"
+              "C:\\SGE\\Aplicacion\\Aplicacion.csproj": {
+                "projectPath": "C:\\SGE\\Aplicacion\\Aplicacion.csproj"
               },
-              "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj": {
-                "projectPath": "C:\\Users\\juanp\\OneDrive\\Escritorio\\SGE\\Dominio\\Dominio.csproj"
+              "C:\\SGE\\Dominio\\Dominio.csproj": {
+                "projectPath": "C:\\SGE\\Dominio\\Dominio.csproj"
               }
             }
           }
@@ -731,9 +731,21 @@
               "target": "Package",
               "version": "[10.0.9, )"
             },
+            "Microsoft.EntityFrameworkCore.Relational": {
+              "target": "Package",
+              "version": "[10.0.9, )"
+            },
             "Microsoft.EntityFrameworkCore.Sqlite": {
               "target": "Package",
               "version": "[10.0.9, )"
+            },
+            "Microsoft.IdentityModel.Tokens": {
+              "target": "Package",
+              "version": "[8.19.1, )"
+            },
+            "System.IdentityModel.Tokens.Jwt": {
+              "target": "Package",
+              "version": "[8.19.1, )"
             }
           },
           "imports": [
