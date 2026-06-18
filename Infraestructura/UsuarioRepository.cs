@@ -1,0 +1,47 @@
+using Aplicacion.Usuarios;
+using Dominio.Usuarios;
+using Microsoft.EntityFrameworkCore;
+
+namespace Infraestructura;
+
+public class UsuarioRepository : IUsuarioRepository
+{
+    private readonly SgeContext _context;
+
+    public UsuarioRepository(SgeContext context)
+    {
+        _context = context;
+    }
+
+    public void AgregarUsuario(Usuario usuario)
+    {
+        _context.Usuarios.Add(usuario);
+    }
+
+    public void ModificarUsuario(Usuario usuario)
+    {
+        _context.Usuarios.Update(usuario);
+    }
+
+    public void EliminarUsuario(Guid id)
+    {
+        var usuario = _context.Usuarios.Find(id) 
+            ?? throw new Exception("Usuario no encontrado");
+        _context.Usuarios.Remove(usuario);
+    }
+
+    public Usuario? ObtenerUsuarioPorId(Guid id)
+    {
+        return _context.Usuarios.Find(id);
+    }
+
+    public Usuario? ObtenerUsuarioPorCorreo(string correoElectronico)
+    {
+        return _context.Usuarios.FirstOrDefault(u => u.CorreoElectronico == correoElectronico);
+    }
+
+    public IEnumerable<Usuario> ObtenerTodosLosUsuarios()
+    {
+        return _context.Usuarios.ToList();
+    }
+}

@@ -1,4 +1,5 @@
 using Aplicacion.Unidad;
+namespace Infraestructura;
 public class UnidadDeTrabajo : IUnidadDeTrabajo
 {
     private readonly SgeContext _context;

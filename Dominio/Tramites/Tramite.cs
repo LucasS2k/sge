@@ -5,7 +5,7 @@ public class Tramite
     public Guid Id{get; private set;}
     public Guid ExpedienteId{ get; private set; }
     public EstadoTramite? Etiqueta{ get; private set; }
-    public ContenidoTramite Contenido{ get; private set; }
+    public ContenidoTramite Contenido{ get; private set; } = null!;
     public DateTime FechaCreacion{ get; init; }
     public DateTime FechaUltimaModificacion{ get; private set; }
     public Guid UsuarioUltimoCambio{ get; private set; }
@@ -33,5 +33,18 @@ public class Tramite
         Contenido = contenido;
         FechaCreacion = fecha;
         UsuarioUltimoCambio = usuarioId;
+    }
+
+    protected Tramite() { }
+ 
+    public void ModificarContenido(EstadoTramite nuevaEtiqueta, ContenidoTramite nuevoContenido, Guid idUsuario)
+    {
+        if (idUsuario == Guid.Empty)
+            throw new DomainException("Usuario requerido");
+ 
+        Etiqueta = nuevaEtiqueta;
+        Contenido = nuevoContenido;
+        FechaUltimaModificacion = DateTime.UtcNow;
+        UsuarioUltimoCambio = idUsuario;
     }
 }

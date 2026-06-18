@@ -4,17 +4,17 @@ using Dominio.Autorizacion;
 using Dominio.Usuarios;
 using Aplicacion.Unidad;
 
-public class LoginUseCase(IUsuarioRepository usuarioRepo, IJwtService jwtService)
+public class LoginUseCase(IUsuarioRepository usuarioRepo, ITokenProvider tokenProvider)
 {
     public LoginResponse Ejecutar(LoginRequest request)
     {
         var usuario = usuarioRepo.ObtenerUsuarioPorCorreo(request.CorreoElectronico)
             ?? throw new AuthorizationException("Credenciales invalidas");
  
-        if (!HashService.Verificar(request.Contrasena, usuario.ContrasenaHash))
+        if (!Hash.Verificar(request.Contrasena, usuario.ContrasenaHash))
             throw new AuthorizationException("Credenciales invalidas");
  
-        var token = jwtService.GenerarToken(usuario.Id);
+        var token = tokenProvider.GenerarToken(usuario);
         return new LoginResponse(token);
     }
 }

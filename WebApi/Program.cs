@@ -3,52 +3,43 @@ using Aplicacion.Comun;
 using Aplicacion.Expedientes;
 using Aplicacion.Tramites;
 using Aplicacion.Usuarios;
-using Infraestructura;
-using Infraestructura.Repositorios;
-using Infraestructura.Servicios;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Scalar.AspNetCore;
 using System.Text;
-using WebApi;
 using WebApi.Endpoints;
-
 var builder = WebApplication.CreateBuilder(args);
 
-// ====================================================================
-// BLOQUE 1: CONFIGURACIÓN DE SERVICIOS (El Contenedor DI)
-// ====================================================================
-
-// A. Base de Datos
+//contexto
 var connectionString = builder.Configuration.GetConnectionString("SgeDb");
 builder.Services.AddDbContext<SgeContext>(opciones =>
     opciones.UseSqlite(connectionString));
 
-// B. Patrón Unit of Work y Repositorios
+//repos
 builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
 builder.Services.AddScoped<IExpedienteRepository, ExpedienteRepository>();
 builder.Services.AddScoped<ITramiteRepository, TramiteRepository>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
-// C. Seguridad
+//token y auth
 builder.Services.AddScoped<IAutorizacionService, AutorizacionService>();
-builder.Services.AddScoped<ITokenProvider, JwtTokenProvider>();
+builder.Services.AddScoped<ITokenProvider, TokenProvider>();
 
-// D. Casos de Uso — Expedientes
+//expedientes
 builder.Services.AddScoped<AltaExpedienteUseCase>();
 builder.Services.AddScoped<BajaExpedienteUseCase>();
 builder.Services.AddScoped<ModificarCaratulaExpedienteUseCase>();
 builder.Services.AddScoped<ModificarExpedienteUseCase>();
 builder.Services.AddScoped<ListarExpedientesUseCase>();
-builder.Services.AddScoped<ObtenerExpedienteUseCase>();
+//builder.Services.AddScoped<ObtenerExpedienteUseCase>();
 
-// D. Casos de Uso — Trámites
+//tramites
 builder.Services.AddScoped<AltaTramiteUseCase>();
 builder.Services.AddScoped<BajaTramiteUseCase>();
-builder.Services.AddScoped<ModificarTramiteUseCase>();
+//builder.Services.AddScoped<ModificarTramiteUseCase>();
 builder.Services.AddScoped<ListarTramitesUseCase>();
-builder.Services.AddScoped<ListarTramitesPorExpedienteUseCase>();
+//builder.Services.AddScoped<ListarTramitesPorExpedienteUseCase>();
 builder.Services.AddScoped<ActualizacionEstadoExpService>();
 
 // D. Casos de Uso — Usuarios
@@ -78,7 +69,6 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
 
 builder.Services.AddAuthorization();
 
-// F. Manejo de excepciones y documentación
 builder.Services.AddProblemDetails();
 builder.Services.AddExceptionHandler<ExceptionHandler>();
 

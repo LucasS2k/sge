@@ -11,7 +11,7 @@ public class RegistrarUsuarioUseCase(IUsuarioRepository usuarioRepo, IUnidadDeTr
         if (existente is not null)
             throw new DomainException("Ese correo ya esta en uso");
  
-        var hash = HashService.Calcular(request.Contrasena);
+        var hash = Hash.Calcular(request.Contrasena);
         var usuario = new Usuario(request.Nombre, request.CorreoElectronico, hash);
  
         usuarioRepo.AgregarUsuario(usuario);

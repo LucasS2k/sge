@@ -2,7 +2,7 @@ namespace Aplicacion.Tramites;
 using Dominio.Autorizacion;
 using Aplicacion.Autorizacion;
 using Aplicacion.Comun;
-
+using Aplicacion.Unidad;
 public class BajaTramiteUseCase
 {
     private readonly ITramiteRepository _tramiteRepo;

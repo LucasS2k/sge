@@ -3,7 +3,7 @@ using Aplicacion.Expedientes;
 using Dominio.Tramites;
 using Dominio.Autorizacion;
 using Aplicacion.Comun;
-
+using Aplicacion.Unidad;
 public class AltaTramiteUseCase
 {
     private readonly ITramiteRepository _tramiteRepo;

@@ -9,7 +9,7 @@ public class BajaUsuarioUseCase(IUsuarioRepository usuarioRepo, IUnidadDeTrabajo
         var admin = usuarioRepo.ObtenerUsuarioPorId(request.IdAdministrador)
             ?? throw new NotFoundException("Usuario no encontrado");
  
-        if (!admin.TienePermiso(Permiso.UsuarioBaja))
+        if (!admin.EsAdministrador)
             throw new AuthorizationException("No posee permisos para eliminar usuarios");
  
         var usuarioAEliminar = usuarioRepo.ObtenerUsuarioPorId(request.IdUsuarioAEliminar)

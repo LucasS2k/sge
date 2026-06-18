@@ -22,7 +22,7 @@ public class ModificarMisDatosUseCase
         usuario.ModificarDatos(request.NuevoNombre, request.NuevoCorreo);
 
         if (!string.IsNullOrWhiteSpace(request.NuevaContrasena))
-            usuario.CambiarContrasena(HashService.Calcular(request.NuevaContrasena));
+            usuario.CambiarContrasena(Hash.Calcular(request.NuevaContrasena));
 
         _usuarioRepo.ModificarUsuario(usuario);
 

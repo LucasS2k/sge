@@ -41,9 +41,9 @@ public class Usuario
     public void ModificarDatos(string nuevoNombre, string nuevoCorreo)
     {
         if (string.IsNullOrWhiteSpace(nuevoNombre))
-            throw new DomainException("El nombre es obligatorio.");
+            throw new DomainException("El nombre es obligatorio");
         if (string.IsNullOrWhiteSpace(nuevoCorreo))
-            throw new DomainException("El correo electrónico es obligatorio.");
+            throw new DomainException("El correo electrónico es obligatorio");
 
         Nombre = nuevoNombre;
         CorreoElectronico = nuevoCorreo.ToLowerInvariant();
@@ -52,7 +52,7 @@ public class Usuario
     public void CambiarContrasena(string nuevoHash)
     {
         if (string.IsNullOrWhiteSpace(nuevoHash))
-            throw new DomainException("La contraseña es obligatoria.");
+            throw new DomainException("La contraseña es obligatoria");
 
         ContrasenaHash = nuevoHash;
     }
@@ -75,9 +75,8 @@ public class Usuario
 
     public bool TienePermiso(Permiso permiso)
     {
-        if (permiso == Permiso.TramiteBaja && _permisos.Contains(Permiso.ExpedienteBaja))
-            return true;
-
-        return _permisos.Contains(permiso);
+        if (_permisos.Contains(permiso)) return true;
+        else if (EsAdministrador) return true; 
+        else return false;
     }
 }
