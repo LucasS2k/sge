@@ -22,7 +22,7 @@ public class AltaExpedienteUseCase
     public AltaExpedienteResponse Ejecutar(AltaExpedienteRequest request)
     {
         if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.ExpedienteAlta))
-            throw new AuthorizationException("No posee permiso para crear un expediente.");
+            throw new AuthorizationException("No posee permiso para crear un expediente");
 
         var caratula = new Caratula(request.Caratula);
         var nuevoExpediente = new Expediente(caratula, request.IdUsuario);

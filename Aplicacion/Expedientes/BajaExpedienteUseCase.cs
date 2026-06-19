@@ -25,10 +25,10 @@ public class BajaExpedienteUseCase
     public BajaExpedienteResponse Ejecutar(BajaExpedienteRequest request)
     {
         if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.ExpedienteBaja))
-            throw new AuthorizationException("No posee permiso para dar de baja expedientes.");
+            throw new AuthorizationException("No posee permiso para dar de baja expedientes");
 
         var expediente = _expedienteRepo.ObtenerExpedientePorId(request.IdExpediente)
-            ?? throw new NotFoundException("No existe el expediente solicitado.");
+            ?? throw new NotFoundException("No existe el expediente solicitado");
 
         var tramitesAsociados = _tramiteRepo.ObtenerTramitesPorExpedienteId(request.IdExpediente);
         foreach (var tramite in tramitesAsociados)

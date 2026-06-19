@@ -20,13 +20,13 @@ public static class UsuariosEndpoints
         {
             var response = useCase.Ejecutar(request);
             return Results.Ok(response);
-        }).WithSummary("Iniciar sesión y obtener token JWT");
+        }).WithSummary("Iniciar sesion y obtener token");
 
         grupo.MapPut("/mis-datos", (ModificarMisDatosRequest request, ModificarMisDatosUseCase useCase, ClaimsPrincipal user) =>
         {
             var response = useCase.Ejecutar(request with { IdUsuarioAutenticado = ObtenerUsuarioId(user) });
             return Results.Ok(response);
-        }).RequireAuthorization().WithSummary("Modificar mis datos personales o contraseña");
+        }).RequireAuthorization().WithSummary("Modificar mis datos o contraseña");
 
         grupo.MapGet("/", (ListarUsuariosUseCase useCase, ClaimsPrincipal user) =>
         {
@@ -50,7 +50,7 @@ public static class UsuariosEndpoints
     private static Guid ObtenerUsuarioId(ClaimsPrincipal user)
     {
         var userIdString = user.FindFirst("ID")?.Value
-            ?? throw new AuthorizationException("Token inválido.");
+            ?? throw new AuthorizationException("Token invalido");
         return Guid.Parse(userIdString);
     }
 }

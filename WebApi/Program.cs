@@ -25,7 +25,14 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
         };
     });
+var connectionString = builder.Configuration.GetConnectionString("SgeDb");
 
+//REVISAR
+var dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SGE.sqlite");
+var connectionStringFinal = $"Data Source={dbPath};Cache=Shared;Pooling=False";
+builder.Services.AddDbContext<SgeContext>(opciones =>
+    opciones.UseSqlite(connectionStringFinal));
+//Servicios
 builder.Services.AddInfraestructura(builder.Configuration);
 builder.Services.AddCasosDeUso();
 builder.Services.AddAuthorization();
@@ -40,14 +47,12 @@ if (app.Environment.IsDevelopment())
     
     app.MapScalarApiReference(options =>
     {
-        options.WithTitle("API SGE")
+        options.WithTitle("SGE")
                .WithDefaultHttpClient(ScalarTarget.CSharp, ScalarClient.HttpClient);
     });
 }
+//Forzar redirect
 app.MapGet("/", () => Results.Redirect("/scalar/v1"));
-
-// app.MapUsuariosEndpoints();
-// app.MapExpedientesEndpoints();
 using (var scope = app.Services.CreateScope())
 {   var services = scope.ServiceProvider;
     var context = scope.ServiceProvider.GetRequiredService<SgeContext>();
@@ -57,13 +62,6 @@ using (var scope = app.Services.CreateScope())
 app.UseExceptionHandler();
 app.UseAuthentication();
 app.UseAuthorization();
-
-// if (app.Environment.IsDevelopment())
-// {
-//     app.MapOpenApi();
-//     app.MapScalarApiReference();
-// }
-
 app.MapUsuariosEndpoints();
 app.MapExpedientesEndpoints();
 app.MapTramitesEndpoints();

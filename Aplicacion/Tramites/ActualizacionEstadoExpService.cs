@@ -14,7 +14,7 @@ public class ActualizacionEstadoExpService
     public ActualizacionEstadoExpResponse Ejecutar(Guid expedienteId, Guid idUsuario)
     {
         var expediente = _expedienteRepo.ObtenerExpedientePorId(expedienteId) 
-            ?? throw new NotFoundException("No existe el expediente solicitado.");
+            ?? throw new NotFoundException("No existe el expediente solicitado");
         var tramites = _tramiteRepo.ObtenerTodosLosTramites();
 
         var ultimoTramite = tramites.OrderByDescending(t => t.FechaCreacion).FirstOrDefault();

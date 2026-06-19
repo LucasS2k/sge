@@ -11,7 +11,7 @@ public class ModificarPermisosUsuarioUseCase(IUsuarioRepository usuarioRepo, IUn
             ?? throw new NotFoundException("Usuario no encontrado");
  
         if (!admin.EsAdministrador)
-            throw new AuthorizationException("No posee permisos para modificar permisos de usuarios");
+            throw new AuthorizationException("No es admin/No posee permisos para modificar permisos de usuarios");
  
         var usuario = usuarioRepo.ObtenerUsuarioPorId(request.IdUsuario)
             ?? throw new NotFoundException("Usuario no encontrado");

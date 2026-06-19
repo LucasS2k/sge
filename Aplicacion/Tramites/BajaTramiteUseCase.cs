@@ -25,10 +25,10 @@ public class BajaTramiteUseCase
     public BajaTramiteResponse Ejecutar(BajaTramiteRequest request)
     {
         if (!_authService.PoseeElPermiso(request.IdUsuario, Permiso.TramiteBaja))
-            throw new AuthorizationException("No posee permiso para eliminar trámites.");
+            throw new AuthorizationException("No posee permiso para eliminar trámites");
 
         var tramite = _tramiteRepo.ObtenerTramitePorId(request.IdTramite)
-            ?? throw new NotFoundException("No existe el trámite.");
+            ?? throw new NotFoundException("No existe el trámite");
 
         _tramiteRepo.EliminarTramite(request.IdTramite);
         _estadoService.Ejecutar(tramite.ExpedienteId, request.IdUsuario);

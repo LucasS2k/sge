@@ -29,10 +29,10 @@ public class AltaTramiteUseCase
     public AltaTramiteResponse Ejecutar(AltaTramiteRequest request)
     {
         if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.TramiteAlta))
-            throw new AuthorizationException("No posee permiso para crear trámites.");
+            throw new AuthorizationException("No posee permiso para crear tramites");
 
         if (!Enum.TryParse<EstadoTramite>(request.Etiqueta, out var estado))
-            throw new DomainException("Etiqueta de trámite inválida.");
+            throw new DomainException("Etiqueta de tramite invalida");
 
         var nuevoTramite = new Tramite(request.IdExpediente, estado, request.Contenido, request.IdUsuario);
         _tramiteRepo.AgregarTramite(nuevoTramite);

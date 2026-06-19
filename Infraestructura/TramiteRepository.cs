@@ -26,7 +26,7 @@ public class TramiteRepository : ITramiteRepository
     public void EliminarTramite(Guid id)
     {
         var tramite = _context.Tramites.Find(id) 
-            ?? throw new Exception("Trámite no encontrado");
+            ?? throw new Exception("Tramite no encontrado");
         _context.Tramites.Remove(tramite);
     }
 

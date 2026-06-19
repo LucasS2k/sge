@@ -8,7 +8,6 @@ public class UnidadDeTrabajo : IUnidadDeTrabajo
     {
         _context = context;
     }
-    
     public void Guardar()
     {
         _context.SaveChanges(); 

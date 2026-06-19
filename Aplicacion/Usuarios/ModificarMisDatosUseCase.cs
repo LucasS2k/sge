@@ -19,7 +19,7 @@ public class ModificarMisDatosUseCase
         var usuario = _usuarioRepo.ObtenerUsuarioPorId(request.IdUsuarioAutenticado)
             ?? throw new NotFoundException("No existe el usuario solicitado.");
 
-        usuario.ModificarDatos(request.NuevoNombre, request.NuevoCorreo);
+        usuario.ModificarDatos(request.NuevoNombre, request.NuevoCorreo); //POSIBLE NULL REVISAR
 
         if (!string.IsNullOrWhiteSpace(request.NuevaContrasena))
             usuario.CambiarContrasena(Hash.Calcular(request.NuevaContrasena));

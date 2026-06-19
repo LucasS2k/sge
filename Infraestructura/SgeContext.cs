@@ -12,11 +12,12 @@ public class SgeContext : DbContext
     public DbSet<Usuario> Usuarios => Set<Usuario>();
 
     public SgeContext(DbContextOptions<SgeContext> options) : base(options) { }
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-{
-    //REVISAR
-    optionsBuilder.UseSqlite(@"Data Source=C:\SGE\sge.db;Cache=Shared;Pooling=False");
-}
+//REVISAR ANTES DE ENTREGAR
+// protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+// {
+//     
+//     optionsBuilder.UseSqlite(@"Data Source=C:\SGE\sge.db;Cache=Shared;Pooling=False");
+// }
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {   
         //Expediente

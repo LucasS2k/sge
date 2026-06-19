@@ -1,7 +1,7 @@
 namespace Aplicacion.Usuarios;
 using System.Security.Cryptography;
 using System.Text;
-
+//REVISAR si corresponde colocarlos aca
 public static class Hash
 {
     public static string Calcular(string texto)

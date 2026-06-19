@@ -9,10 +9,10 @@ public class LoginUseCase(IUsuarioRepository usuarioRepo, ITokenProvider tokenPr
     public LoginResponse Ejecutar(LoginRequest request)
     {
         var usuario = usuarioRepo.ObtenerUsuarioPorCorreo(request.CorreoElectronico)
-            ?? throw new AuthorizationException("Credenciales invalidas");
+            ?? throw new AuthorizationException("Usuario no registrado");
  
         if (!Hash.Verificar(request.Contrasena, usuario.ContrasenaHash))
-            throw new AuthorizationException("Credenciales invalidas");
+            throw new AuthorizationException("Contraseña incorrecta");
  
         var token = tokenProvider.GenerarToken(usuario);
         return new LoginResponse(token);

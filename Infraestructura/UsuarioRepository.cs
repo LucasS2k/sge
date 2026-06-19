@@ -34,7 +34,7 @@ public class UsuarioRepository : IUsuarioRepository
     {
         return _context.Usuarios.Find(id);
     }
-
+    //para el login
     public Usuario? ObtenerUsuarioPorCorreo(string correoElectronico)
     {
         return _context.Usuarios.FirstOrDefault(u => u.CorreoElectronico == correoElectronico);

@@ -25,7 +25,7 @@ public class ModificarCaratulaExpedienteUseCase
             throw new AuthorizationException("No posee permisos para modificar expedientes.");
 
         var expediente = _expedienteRepo.ObtenerExpedientePorId(request.IdExpediente)
-            ?? throw new NotFoundException("No existe el expediente solicitado.");
+            ?? throw new NotFoundException("No existe el expediente solicitado");
 
         var nuevaCaratula = new Caratula(request.NuevaCaratula);
         expediente.ModificarCaratula(nuevaCaratula, request.IdUsuario);

@@ -9,7 +9,7 @@ public class SgeSqlite
 {
     if (context.Database.EnsureCreated())
     {
-        Console.WriteLine("Base de datos creada.");
+        Console.WriteLine("BASE DE DATOS CREADA CON EXITO");
     }
 
     using (var transaction = context.Database.BeginTransaction())
@@ -17,7 +17,7 @@ public class SgeSqlite
         try
         {   if (context.Usuarios.Any()) return;
 
-        Console.WriteLine("Insertando datos iniciales...");
+        Console.WriteLine("Inicializando datos");
 
             var admin = new Usuario("Administrador", "admin@unlp.com", Hash.Calcular("admin123"), true);
             var usuarioAlgunos = new Usuario("Usuario Algunos", "algunos@unlp.com", Hash.Calcular("algunos123"));
@@ -28,7 +28,7 @@ public class SgeSqlite
             context.SaveChanges();
             
             transaction.Commit();
-            Console.WriteLine("Datos iniciales insertados correctamente.");
+            Console.WriteLine("Datos iniciales insertados correctamente");
         }
         catch (Exception ex)
         {

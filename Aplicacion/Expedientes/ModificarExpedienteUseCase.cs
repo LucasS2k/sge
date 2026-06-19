@@ -22,14 +22,14 @@ public class ModificarExpedienteUseCase
 public ModificarExpedienteResponse Ejecutar(ModificarEstadoExpedienteRequest request)
 {
     if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.ExpedienteModificacion))
-        throw new AuthorizationException("No posee permisos para modificar expedientes.");
+        throw new AuthorizationException("No posee permisos para modificar expedientes");
 
     var expediente = _expedienteRepo.ObtenerExpedientePorId(request.IdExpediente)
         ?? throw new NotFoundException("No existe el expediente solicitado.");
     //forzar conversion
     if (!Enum.TryParse<Dominio.Expedientes.EstadoExpediente>(request.NuevoEstado, true, out var nuevoEstadoEnum))
     {
-        throw new DomainException($"El estado '{request.NuevoEstado}' no es un estado de expediente válido.");
+        throw new DomainException($"El estado '{request.NuevoEstado}' No es un estado de expediente válido");
     }
 
     expediente.CambiarEstado(nuevoEstadoEnum, request.IdUsuario);

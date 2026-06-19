@@ -27,14 +27,14 @@ public static class ExpedientesEndpoints
         {
             var response = useCase.Ejecutar(request with { IdExpediente = id, IdUsuario = ObtenerUsuarioId(user) });
             return Results.Ok(response);
-        }).WithSummary("Modificar la carátula de un expediente");
+        }).WithSummary("Modificar la caratula de un expediente");
 
 
         grupo.MapDelete("/{id:guid}", (Guid id, BajaExpedienteUseCase useCase, ClaimsPrincipal user) =>
         {
             var response = useCase.Ejecutar(new BajaExpedienteRequest(id, ObtenerUsuarioId(user)));
             return Results.Ok(response);
-        }).WithSummary("Eliminar un expediente y sus trámites (baja en cascada)");
+        }).WithSummary("Eliminar un expediente y sus tramites");
     }
 
     private static Guid ObtenerUsuarioId(ClaimsPrincipal user)

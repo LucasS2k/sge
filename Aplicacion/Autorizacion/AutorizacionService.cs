@@ -11,7 +11,7 @@ public class AutorizacionService : IAutorizacionService
     {
         _usuarioRepository = usuarioRepository;
     }
-
+    //la excepcion se maneja en el caso de uso
     public bool PoseeElPermiso(Guid idUsuario, Permiso permiso)
     {
         var usuario = _usuarioRepository.ObtenerUsuarioPorId(idUsuario);

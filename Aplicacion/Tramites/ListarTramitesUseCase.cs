@@ -17,7 +17,7 @@ public class ListarTramitesUseCase
     {
         if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.TramiteListar))
         {
-            throw new AuthorizationException("no posee permiso para consultar tramites");
+            throw new AuthorizationException("No posee permiso para consultar tramites");
         }
         var entidades = _tramiteRepo.ObtenerTodosLosTramites();
         var datos = entidades.Select(t => new TramiteResponse(

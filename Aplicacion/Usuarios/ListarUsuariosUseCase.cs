@@ -11,7 +11,7 @@ public class ListarUsuariosUseCase(IUsuarioRepository usuarioRepo)
             ?? throw new NotFoundException("Usuario no encontrado");
  
         if (!admin.EsAdministrador)
-            throw new AuthorizationException("No posee permisos para listar usuarios");
+            throw new AuthorizationException("No es admin/No posee permisos para listar usuarios");
  
         var usuarios = usuarioRepo.ObtenerTodosLosUsuarios()
             .Select(u => new UsuarioResponse(
