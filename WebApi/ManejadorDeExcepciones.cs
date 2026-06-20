@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 
 public class ManejadorDeExcepciones : IExceptionHandler
-{
+{   //maneja las excepciones de la aplicacion y devuelve un status code adecuado
     public async ValueTask<bool> TryHandleAsync(
         HttpContext httpContext,
         Exception exception,

@@ -28,7 +28,7 @@ public class SgeContext : DbContext
             {
                 c.Property(v => v.Valor).HasColumnName("Caratula").IsRequired();
             });
-            e.Property(x => x.Estado).HasConversion<string>();
+            e.Property(x => x.Estado).HasConversion<string>(); //no se le puede enviar enum directamente
             e.Property(x => x.FechaCreacion).IsRequired();
             e.Property(x => x.FechaUltimaModificacion).IsRequired();
             e.Property(x => x.UsuarioUltimoCambio).IsRequired();

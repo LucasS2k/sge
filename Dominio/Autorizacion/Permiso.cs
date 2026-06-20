@@ -11,7 +11,7 @@ public enum Permiso
     ExpedienteBaja,
     ExpedienteModificacion,
     ExpedienteListar,
-     //provisorio
+     //usuario
      UsuarioAlta,
      UsuarioBaja,
      UsuarioModificacion,

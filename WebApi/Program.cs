@@ -14,10 +14,13 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(opciones =>
     {
         opciones.TokenValidationParameters = new TokenValidationParameters
-        {
+        {   //valida el emisor
             ValidateIssuer = true,
+            //valida el destinatario
             ValidateAudience = true,
+            //valida la vida del token
             ValidateLifetime = true,
+            //valida quien firma el token
             ValidateIssuerSigningKey = true,
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
@@ -58,7 +61,6 @@ using (var scope = app.Services.CreateScope())
     var context = scope.ServiceProvider.GetRequiredService<SgeContext>();
     SgeSqlite.Inicializar(context);
 }
-
 app.UseExceptionHandler();
 app.UseAuthentication();
 app.UseAuthorization();

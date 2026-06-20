@@ -1,7 +1,7 @@
 {
   "format": 1,
   "restore": {
-    "C:\\SGE\\webapi\\WebApi.csproj": {}
+    "C:\\SGE\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
     "C:\\SGE\\Aplicacion\\Aplicacion.csproj": {
@@ -1042,14 +1042,14 @@
         }
       }
     },
-    "C:\\SGE\\webapi\\WebApi.csproj": {
+    "C:\\SGE\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\SGE\\webapi\\WebApi.csproj",
+        "projectUniqueName": "C:\\SGE\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\SGE\\webapi\\WebApi.csproj",
+        "projectPath": "C:\\SGE\\WebApi\\WebApi.csproj",
         "packagesPath": "C:\\Users\\juanp\\.nuget\\packages\\",
-        "outputPath": "C:\\SGE\\webapi\\obj\\",
+        "outputPath": "C:\\SGE\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\juanp\\AppData\\Roaming\\NuGet\\NuGet.Config"
