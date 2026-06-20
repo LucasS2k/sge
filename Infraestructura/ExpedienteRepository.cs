@@ -2,7 +2,7 @@ using Aplicacion.Expedientes;
 using Dominio.Expedientes;
 using Microsoft.EntityFrameworkCore;
 namespace Infraestructura;
-
+//interaccion con la base de datos para la entidad Expediente
 public class ExpedienteRepository : IExpedienteRepository
 {
     private readonly SgeContext _context;

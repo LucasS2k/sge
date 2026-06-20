@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
-
+//generacion de token JWT para la autenticacion de usuarios
 public class TokenProvider(IConfiguration config) : ITokenProvider
 {
     public string GenerarToken(Usuario usuario)

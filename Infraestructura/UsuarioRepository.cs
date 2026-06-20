@@ -3,7 +3,7 @@ using Dominio.Usuarios;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructura;
-
+//interaccion con la base de datos para la entidad Usuario
 public class UsuarioRepository : IUsuarioRepository
 {
     private readonly SgeContext _context;

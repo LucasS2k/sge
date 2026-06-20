@@ -3,7 +3,7 @@ using Dominio.Tramites;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infraestructura;
-
+//interaccion con la base de datos para la entidad Tramite
 public class TramiteRepository : ITramiteRepository
 {
     private readonly SgeContext _context;
