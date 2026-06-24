@@ -12,12 +12,7 @@ public class SgeContext : DbContext
     public DbSet<Usuario> Usuarios => Set<Usuario>();
 
     public SgeContext(DbContextOptions<SgeContext> options) : base(options) { }
-//REVISAR ANTES DE ENTREGAR
-// protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-// {
-//     
-//     optionsBuilder.UseSqlite(@"Data Source=C:\SGE\sge.db;Cache=Shared;Pooling=False");
-// }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {   
         //Expediente
@@ -34,7 +29,7 @@ public class SgeContext : DbContext
             e.Property(x => x.UsuarioUltimoCambio).IsRequired();
         });
 
-        //tramite
+        //Tramite
         modelBuilder.Entity<Tramite>(t =>
         {
             t.HasKey(x => x.Id);
@@ -57,10 +52,14 @@ public class SgeContext : DbContext
             u.Property(x => x.CorreoElectronico).IsRequired();
             u.Property(x => x.ContrasenaHash).IsRequired();
             u.Property(x => x.EsAdministrador).IsRequired();
-
-            u.PrimitiveCollection(x => x.Permisos)
+            u.Property(u => u.Permisos)
              .HasColumnName("Permisos")
-             .ElementType(b => b.HasConversion<string>());
+             .HasConversion(
+              v => string.Join(',', v.Select(p => p.ToString())),
+                     v => v == "" ? new List<Permiso>() : v.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                     .Select(p => Enum.Parse<Permiso>(p))
+                     .ToList()
+                    );
         });
     }
 }

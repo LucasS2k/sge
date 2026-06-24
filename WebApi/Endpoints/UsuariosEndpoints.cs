@@ -40,11 +40,14 @@ public static class UsuariosEndpoints
             return Results.Ok(response);
         }).RequireAuthorization().WithSummary("Eliminar un usuario");
 
-        grupo.MapPut("/{id:guid}/permisos", (Guid id, IEnumerable<Permiso> body, ModificarPermisosUsuarioUseCase useCase, ClaimsPrincipal user) =>
-        {
-            var response = useCase.Ejecutar(new ModificarPermisosUsuarioRequest(ObtenerUsuarioId(user), id, body));
-            return Results.Ok(response);
-        }).RequireAuthorization().WithSummary("Modificar permisos de un usuario");
+        grupo.MapPut("/{id:guid}/permisos", (Guid id, ModificarPermisosBody body, ModificarPermisosUsuarioUseCase useCase, ClaimsPrincipal user) =>
+{   var permisos = body.Permisos
+        .Where(p => Enum.TryParse<Permiso>(p, out _))
+        .Select(p => Enum.Parse<Permiso>(p));
+
+    var response = useCase.Ejecutar(new ModificarPermisosUsuarioRequest(ObtenerUsuarioId(user), id, permisos));
+    return Results.Ok(response);
+}).RequireAuthorization().WithSummary("Modificar permisos de un usuario");
     }
 
     private static Guid ObtenerUsuarioId(ClaimsPrincipal user)

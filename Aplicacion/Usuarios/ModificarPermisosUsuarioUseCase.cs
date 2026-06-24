@@ -3,7 +3,7 @@ using Aplicacion.Comun;
 using Dominio.Autorizacion;
 using Dominio.Usuarios;
 using Aplicacion.Unidad;
-public class ModificarPermisosUsuarioUseCase(IUsuarioRepository usuarioRepo, IUnidadDeTrabajo uow)
+public class ModificarPermisosUsuarioUseCase(IUsuarioRepository usuarioRepo, IUnidadDeTrabajo _unidadDeTrabajo)
 {
     public ModificarPermisosUsuarioResponse Ejecutar(ModificarPermisosUsuarioRequest request)
     {
@@ -17,8 +17,9 @@ public class ModificarPermisosUsuarioUseCase(IUsuarioRepository usuarioRepo, IUn
             ?? throw new NotFoundException("Usuario no encontrado");
  
         usuario.ReemplazarPermisos(request.NuevosPermisos);
+        Console.WriteLine($"Nuevos permisos del request: {string.Join(", ", request.NuevosPermisos)}");
         usuarioRepo.ModificarUsuario(usuario);
-        uow.Guardar();
+        _unidadDeTrabajo.Guardar();
  
         return new ModificarPermisosUsuarioResponse(usuario.Id, true);
     }

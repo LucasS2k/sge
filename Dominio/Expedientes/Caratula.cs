@@ -1,3 +1,4 @@
+using Dominio.Comun;
 public record class Caratula
 {
     public string Valor {get;}

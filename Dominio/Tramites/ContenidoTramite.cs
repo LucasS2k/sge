@@ -1,3 +1,4 @@
+using Dominio.Comun;
 public record class ContenidoTramite
 {
     public string Valor {get;}

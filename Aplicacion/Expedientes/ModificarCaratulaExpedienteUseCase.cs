@@ -22,7 +22,7 @@ public class ModificarCaratulaExpedienteUseCase
     public ModificarCaratulaExpedienteResponse Ejecutar(ModificarCaratulaExpedienteRequest request)
     {
         if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.ExpedienteModificacion))
-            throw new AuthorizationException("No posee permisos para modificar expedientes.");
+            throw new AuthorizationException("No posee permisos para modificar expedientes");
 
         var expediente = _expedienteRepo.ObtenerExpedientePorId(request.IdExpediente)
             ?? throw new NotFoundException("No existe el expediente solicitado");

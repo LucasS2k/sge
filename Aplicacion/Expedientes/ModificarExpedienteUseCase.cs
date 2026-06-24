@@ -1,6 +1,6 @@
 namespace Aplicacion.Expedientes;
 using Dominio.Autorizacion;
-using Aplicacion.Autorizacion;
+using Dominio.Comun;
 using Aplicacion.Comun;
 using Aplicacion.Unidad;
 using Dominio.Expedientes;

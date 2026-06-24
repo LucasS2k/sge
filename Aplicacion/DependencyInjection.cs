@@ -14,16 +14,11 @@ public static class DependencyInjection
     services.AddScoped<ModificarCaratulaExpedienteUseCase>();
     services.AddScoped<ModificarExpedienteUseCase>();
     services.AddScoped<ListarExpedientesUseCase>();
-    //services.AddScoped<ObtenerExpedienteUseCase>();
     services.AddScoped<ActualizacionEstadoExpService>();
- 
     // Trámites
     services.AddScoped<AltaTramiteUseCase>();
     services.AddScoped<BajaTramiteUseCase>();
-    //services.AddScoped<ModificarTramiteUseCase>();
     services.AddScoped<ListarTramitesUseCase>();
-    //services.AddScoped<ListarTramitesPorExpedienteUseCase>();
- 
     // Usuarios
     services.AddScoped<RegistrarUsuarioUseCase>();
     services.AddScoped<LoginUseCase>();

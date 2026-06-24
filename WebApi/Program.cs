@@ -30,7 +30,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 var connectionString = builder.Configuration.GetConnectionString("SgeDb");
 
-//REVISAR
+//Define la ruta de la base de datos SQLite en el directorio de la aplicacion
 var dbPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SGE.sqlite");
 var connectionStringFinal = $"Data Source={dbPath};Cache=Shared;Pooling=False";
 builder.Services.AddDbContext<SgeContext>(opciones =>

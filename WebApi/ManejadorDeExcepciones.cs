@@ -2,6 +2,7 @@ namespace WebApi;
 using Aplicacion.Comun;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Dominio.Comun;
 
 public class ManejadorDeExcepciones : IExceptionHandler
 {   //maneja las excepciones de la aplicacion y devuelve un status code adecuado

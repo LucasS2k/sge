@@ -14,7 +14,7 @@ public class TokenProvider(IConfiguration config) : ITokenProvider
         // solo queremos su id
         var claims = new[]
         {
-            new Claim(ClaimTypes.NameIdentifier, usuario.Id.ToString())
+            new Claim("ID", usuario.Id.ToString())
         };
 
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(config["Jwt:Key"]!));

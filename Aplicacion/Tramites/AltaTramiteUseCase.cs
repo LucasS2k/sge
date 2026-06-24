@@ -4,6 +4,7 @@ using Dominio.Tramites;
 using Dominio.Autorizacion;
 using Aplicacion.Comun;
 using Aplicacion.Unidad;
+using Dominio.Comun;
 public class AltaTramiteUseCase
 {
     private readonly ITramiteRepository _tramiteRepo;

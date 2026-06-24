@@ -1,4 +1,6 @@
 using Aplicacion.Unidad;
+using Microsoft.EntityFrameworkCore;
+using Dominio.Usuarios;
 namespace Infraestructura;
 //implementacion de la unidad de trabajo, que permite guardar los cambios en la base de datos
 public class UnidadDeTrabajo : IUnidadDeTrabajo
@@ -10,7 +12,7 @@ public class UnidadDeTrabajo : IUnidadDeTrabajo
         _context = context;
     }
     public void Guardar()
-    {
-        _context.SaveChanges(); 
-    }
+{
+    _context.SaveChanges();
+}
 }

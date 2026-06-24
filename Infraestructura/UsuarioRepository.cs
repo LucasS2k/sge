@@ -1,7 +1,7 @@
 using Aplicacion.Usuarios;
 using Dominio.Usuarios;
 using Microsoft.EntityFrameworkCore;
-
+using Dominio.Autorizacion;
 namespace Infraestructura;
 //interaccion con la base de datos para la entidad Usuario
 public class UsuarioRepository : IUsuarioRepository
@@ -19,9 +19,14 @@ public class UsuarioRepository : IUsuarioRepository
     }
 
     public void ModificarUsuario(Usuario usuario)
+{
+    var tracked = _context.Usuarios
+        .FirstOrDefault(u => u.Id == usuario.Id);
+    if (tracked != null)
     {
-        _context.Usuarios.Update(usuario);
+        tracked.Permisos = new List<Permiso>(usuario.Permisos);
     }
+}
 
     public void EliminarUsuario(Guid id)
     {
@@ -29,11 +34,12 @@ public class UsuarioRepository : IUsuarioRepository
             ?? throw new Exception("Usuario no encontrado");
         _context.Usuarios.Remove(usuario);
     }
-
+//
     public Usuario? ObtenerUsuarioPorId(Guid id)
-    {
-        return _context.Usuarios.Find(id);
-    }
+{
+    return _context.Usuarios
+        .FirstOrDefault(u => u.Id == id);
+}
     //para el login
     public Usuario? ObtenerUsuarioPorCorreo(string correoElectronico)
     {

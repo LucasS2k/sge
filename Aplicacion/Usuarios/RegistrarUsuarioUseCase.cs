@@ -3,7 +3,8 @@ using Aplicacion.Autorizacion;
 using Dominio.Autorizacion;
 using Dominio.Usuarios;
 using Aplicacion.Unidad;
-public class RegistrarUsuarioUseCase(IUsuarioRepository usuarioRepo, IUnidadDeTrabajo uow)
+using Dominio.Comun;
+public class RegistrarUsuarioUseCase(IUsuarioRepository usuarioRepo, IUnidadDeTrabajo _unidadDeTrabajo)
 {
     public RegistrarUsuarioResponse Ejecutar(RegistrarUsuarioRequest request)
     {
@@ -15,7 +16,7 @@ public class RegistrarUsuarioUseCase(IUsuarioRepository usuarioRepo, IUnidadDeTr
         var usuario = new Usuario(request.Nombre, request.CorreoElectronico, hash);
  
         usuarioRepo.AgregarUsuario(usuario);
-        uow.Guardar();
+        _unidadDeTrabajo.Guardar();
  
         return new RegistrarUsuarioResponse(usuario.Id, usuario.Nombre, usuario.CorreoElectronico);
     }

@@ -15,7 +15,6 @@ public static class DependencyInjection
         var connectionString = configuration.GetConnectionString("SgeDb");
         services.AddDbContext<SgeContext>(opciones =>
             opciones.UseSqlite(connectionString));
-        //scoped se usa porque se crea una instancia por cada request y se destruye al finalizar el request
         services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
         services.AddScoped<IExpedienteRepository, ExpedienteRepository>();
         services.AddScoped<ITramiteRepository, TramiteRepository>();

@@ -1,5 +1,5 @@
 using Dominio.Tramites;
-
+using Dominio.Comun;
 public class Tramite
 {
     public Guid Id{get; private set;}

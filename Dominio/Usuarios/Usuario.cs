@@ -1,5 +1,5 @@
 using Dominio.Autorizacion;
-
+using Dominio.Comun;
 namespace Dominio.Usuarios;
 
 public class Usuario
@@ -10,8 +10,7 @@ public class Usuario
     public string ContrasenaHash { get; private set; }
     public bool EsAdministrador { get; private set; }
 
-    private readonly List<Permiso> _permisos;
-    public IReadOnlyCollection<Permiso> Permisos => _permisos.AsReadOnly();
+    public List<Permiso> Permisos {get; set;} =new();
 
     public Usuario(string nombre, string correoElectronico, string contrasenaHash, bool esAdministrador = false)
     {
@@ -27,7 +26,7 @@ public class Usuario
         CorreoElectronico = correoElectronico.ToLowerInvariant();
         ContrasenaHash = contrasenaHash;
         EsAdministrador = esAdministrador;
-        _permisos = new List<Permiso>();
+        Permisos = new List<Permiso>();
     }
     public Usuario(Guid id, string nombre, string correoElectronico, string contrasenaHash, bool esAdministrador, IEnumerable<Permiso> permisos)
     {
@@ -36,17 +35,21 @@ public class Usuario
         CorreoElectronico = correoElectronico;
         ContrasenaHash = contrasenaHash;
         EsAdministrador = esAdministrador;
-        _permisos = permisos.ToList();
+        Permisos = permisos.ToList();
     }
-    public void ModificarDatos(string nuevoNombre, string nuevoCorreo)
-    {
-        if (string.IsNullOrWhiteSpace(nuevoNombre))
-            throw new DomainException("El nombre es obligatorio");
-        if (string.IsNullOrWhiteSpace(nuevoCorreo))
-            throw new DomainException("El correo electrónico es obligatorio");
 
-        Nombre = nuevoNombre;
-        CorreoElectronico = nuevoCorreo.ToLowerInvariant();
+    public void CambiarNombre(string nuevoNombre)
+    {
+     if (string.IsNullOrWhiteSpace(nuevoNombre))
+         throw new DomainException("El nombre es obligatorio");
+      Nombre = nuevoNombre;
+    }
+
+    public void CambiarCorreo(string nuevoCorreo)
+    {
+     if (string.IsNullOrWhiteSpace(nuevoCorreo))
+         throw new DomainException("El correo electronico es obligatorio");
+     CorreoElectronico = nuevoCorreo.ToLowerInvariant();
     }
 
     public void CambiarContrasena(string nuevoHash)
@@ -58,24 +61,24 @@ public class Usuario
     }
     public void AgregarPermiso(Permiso permiso)
     {
-        if (!_permisos.Contains(permiso))
-            _permisos.Add(permiso);
+        if (!Permisos.Contains(permiso))
+            Permisos.Add(permiso);
     }
 
     public void RemoverPermiso(Permiso permiso)
     {
-        _permisos.Remove(permiso);
+        Permisos.Remove(permiso);
     }
 
     public void ReemplazarPermisos(IEnumerable<Permiso> nuevosPermisos)
     {
-        _permisos.Clear();
-        _permisos.AddRange(nuevosPermisos.Distinct());
+        Permisos.Clear();
+        Permisos.AddRange(nuevosPermisos.Distinct());
     }
 
     public bool TienePermiso(Permiso permiso)
     {
-        if (_permisos.Contains(permiso)) return true;
+        if (Permisos.Contains(permiso)) return true;
         else if (EsAdministrador) return true; 
         else return false;
     }

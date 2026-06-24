@@ -6,13 +6,6 @@ public record AltaExpedienteRequest(string Caratula, Guid IdUsuario);
 
 public record BajaExpedienteRequest(Guid IdExpediente, Guid IdUsuario);
 
-/// <summary>
-/// public record ModificarExpedienteRequest(Guid IdExpediente, string NuevaCaratula, Guid IdUsuario);
-/// </summary>
-/// <param name="IdExpediente"></param>
-/// <param name="NuevaCaratula"></param>
-/// <param name="IdUsuario"></param>
-
 public record ModificarCaratulaExpedienteRequest(Guid IdExpediente, string NuevaCaratula, Guid IdUsuario);
 public record ModificarEstadoExpedienteRequest(Guid IdExpediente, string NuevoEstado, Guid IdUsuario);
 public record ObtenerExpedienteRequest(Guid IdExpediente, Guid IdUsuario);

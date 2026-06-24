@@ -1,5 +1,6 @@
 using Dominio.Expedientes;
 using Dominio.Tramites;
+using Dominio.Comun;
 public class Expediente
 {
     public Guid Id{get; private set;}

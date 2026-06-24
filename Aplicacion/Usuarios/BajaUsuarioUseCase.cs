@@ -2,7 +2,7 @@ namespace Aplicacion.Usuarios;
 using Aplicacion.Comun;
 using Dominio.Autorizacion;
 using Aplicacion.Unidad;
-public class BajaUsuarioUseCase(IUsuarioRepository usuarioRepo, IUnidadDeTrabajo uow)
+public class BajaUsuarioUseCase(IUsuarioRepository usuarioRepo, IUnidadDeTrabajo _unidadDeTrabajo)
 {
     public BajaUsuarioResponse Ejecutar(BajaUsuarioRequest request)
     {
@@ -16,7 +16,7 @@ public class BajaUsuarioUseCase(IUsuarioRepository usuarioRepo, IUnidadDeTrabajo
             ?? throw new NotFoundException("Usuario no encontrado");
  
         usuarioRepo.EliminarUsuario(usuarioAEliminar.Id);
-        uow.Guardar();
+        _unidadDeTrabajo.Guardar();
  
         return new BajaUsuarioResponse(usuarioAEliminar.Id, true);
     }

@@ -1,7 +1,7 @@
 using Aplicacion.Tramites;
 using Dominio.Tramites;
 using Microsoft.EntityFrameworkCore;
-
+using Aplicacion.Comun;
 namespace Infraestructura;
 //interaccion con la base de datos para la entidad Tramite
 public class TramiteRepository : ITramiteRepository
@@ -26,7 +26,7 @@ public class TramiteRepository : ITramiteRepository
     public void EliminarTramite(Guid id)
     {
         var tramite = _context.Tramites.Find(id) 
-            ?? throw new Exception("Tramite no encontrado");
+            ?? throw new NotFoundException("Tramite no encontrado");
         _context.Tramites.Remove(tramite);
     }
 
