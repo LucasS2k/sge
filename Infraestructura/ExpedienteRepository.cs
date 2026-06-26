@@ -32,7 +32,14 @@ public class ExpedienteRepository : IExpedienteRepository
     public Expediente? ObtenerExpedientePorId(Guid id)
     {
         return _context.Expedientes.Find(id);
-    }
+    } //no se usa?
+
+    public Expediente? ObtenerConTramites(Guid id)
+{
+    return _context.Expedientes
+        .Include(e => e.Tramites) //carga los tramites asociados
+        .FirstOrDefault(e => e.Id == id);
+}
 
     public void ModificarExpediente(Expediente expediente)
     {

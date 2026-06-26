@@ -27,6 +27,11 @@ public class SgeContext : DbContext
             e.Property(x => x.FechaCreacion).IsRequired();
             e.Property(x => x.FechaUltimaModificacion).IsRequired();
             e.Property(x => x.UsuarioUltimoCambio).IsRequired();
+
+            e.HasMany(exp => exp.Tramites) //un expediente puede tener varios tramites
+            .WithOne( t => t.Expediente)                             
+            .HasForeignKey(t => t.ExpedienteId) //identificacion
+            .OnDelete(DeleteBehavior.Cascade); //baja en cascada
         });
 
         //Tramite
@@ -42,6 +47,10 @@ public class SgeContext : DbContext
             t.Property(x => x.FechaCreacion).IsRequired();
             t.Property(x => x.FechaUltimaModificacion).IsRequired();
             t.Property(x => x.UsuarioUltimoCambio).IsRequired();
+
+            t.HasOne(t => t.Expediente)
+            .WithMany(e => e.Tramites)
+            .HasForeignKey(t => t.ExpedienteId);
         });
 
         //usuario

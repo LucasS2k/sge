@@ -6,12 +6,12 @@ using Aplicacion.Unidad;
 public class ListarUsuariosUseCase(IUsuarioRepository usuarioRepo)
 {
     public ListarUsuariosResponse Ejecutar(ListarUsuariosRequest request)
-    {
+    {   //solo un admin puede listar usuarios, no se requiere un permiso especifico para listar usuarios
         var admin = usuarioRepo.ObtenerUsuarioPorId(request.IdAdministrador)
             ?? throw new NotFoundException("Usuario no encontrado");
  
         if (!admin.EsAdministrador)
-            throw new AuthorizationException("No es admin/No posee permisos para listar usuarios");
+            throw new AuthorizationException("No es administrador, no puede realizar esta accion");
  
         var usuarios = usuarioRepo.ObtenerTodosLosUsuarios()
             .Select(u => new UsuarioResponse(

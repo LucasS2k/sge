@@ -9,6 +9,8 @@ public class Tramite
     public DateTime FechaCreacion{ get; init; }
     public DateTime FechaUltimaModificacion{ get; private set; }
     public Guid UsuarioUltimoCambio{ get; private set; }
+
+    public Expediente Expediente { get; private set; } = null!;
     //constructor para crear un nuevo tramite
     public Tramite(Guid expedienteId, EstadoTramite? etiqueta, ContenidoTramite contenido, Guid usuarioUltimoCambio)
     {

@@ -7,13 +7,13 @@ public enum Permiso
     TramiteModificacion,
     TramiteListar,
     //expediente
-    ExpedienteAlta,
-    ExpedienteBaja,
-    ExpedienteModificacion,
-    ExpedienteListar,
+    ExpedienteAlta, //necesario
+    ExpedienteBaja, //necesario
+    ExpedienteModificacion, //necesario
+    ExpedienteListar, //necesario
      //usuario
-     UsuarioAlta,
-     UsuarioBaja,
-     UsuarioModificacion,
-     UsuarioListar
+     UsuarioAlta, //innecesario
+     UsuarioBaja, //admin deberia poder hacerlo sin el permiso especifico
+     UsuarioModificacion, //admin deberia poder hacerlo sin el permiso especifico
+     UsuarioListar //admin deberia poder hacerlo sin el permiso especifico
  }

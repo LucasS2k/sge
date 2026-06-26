@@ -29,7 +29,7 @@ public ModificarExpedienteResponse Ejecutar(ModificarEstadoExpedienteRequest req
     //forzar conversion
     if (!Enum.TryParse<Dominio.Expedientes.EstadoExpediente>(request.NuevoEstado, true, out var nuevoEstadoEnum))
     {
-        throw new DomainException($"El estado '{request.NuevoEstado}' No es un estado de expediente válido");
+        throw new DomainException($"El estado '{request.NuevoEstado}' No es un estado válido");
     }
 
     expediente.CambiarEstado(nuevoEstadoEnum, request.IdUsuario);

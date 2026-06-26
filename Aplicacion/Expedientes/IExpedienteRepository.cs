@@ -5,5 +5,6 @@ public interface IExpedienteRepository
     void ModificarExpediente(Expediente expediente);
     void EliminarExpediente(Guid id);
     Expediente? ObtenerExpedientePorId(Guid id);
+    Expediente? ObtenerConTramites(Guid id);
     IEnumerable<Expediente> ObtenerTodosLosExpedientes();
 }

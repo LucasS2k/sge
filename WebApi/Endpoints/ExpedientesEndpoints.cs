@@ -1,6 +1,7 @@
 namespace WebApi.Endpoints;
 using Aplicacion.Comun;
 using Aplicacion.Expedientes;
+using Aplicacion.Tramites;
 using System.Security.Claims;
 using Dominio.Autorizacion;
 public static class ExpedientesEndpoints
@@ -16,6 +17,18 @@ public static class ExpedientesEndpoints
             var response = useCase.Ejecutar(new ListarExpedientesRequest(ObtenerUsuarioId(user)));
             return Results.Ok(response);
         }).WithSummary("Listar todos los expedientes");
+        //falta testear
+        grupo.MapGet("/{id:guid}/tramites", (Guid id, ListarTramitesPorExpedienteUseCase useCase) =>
+        {
+             var response = useCase.Ejecutar(id);
+             return Results.Ok(response);
+        }).WithSummary("Listar todos los tramites de un expediente");
+        //falta testear
+        grupo.MapGet("/{id:guid}/detallado", (Guid id, ObtenerConTramitesUseCase useCase) =>
+        {
+            var response = useCase.Ejecutar(new ObtenerExpedienteRequest(id, Guid.Empty));
+            return Results.Ok(response);
+        }).WithSummary("Obtener expediente con tramites detallados");
 
         grupo.MapPost("/", (AltaExpedienteRequest request, AltaExpedienteUseCase useCase, ClaimsPrincipal user) =>
         {

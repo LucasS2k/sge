@@ -1,5 +1,4 @@
 namespace Aplicacion.Autorizacion;
-
 using Dominio.Autorizacion;
 using Aplicacion.Usuarios; 
 
@@ -17,7 +16,11 @@ public class AutorizacionService : IAutorizacionService
         var usuario = _usuarioRepository.ObtenerUsuarioPorId(idUsuario);
         
         if (usuario == null) return false;
-
+        if (usuario.EsAdministrador) return true; //tiene todos los permisos
+        if (permiso == Permiso.TramiteBaja && usuario.Permisos.Contains(Permiso.ExpedienteBaja))//uno implica otro necesariamente
+    {
+        return true;
+    }
         return usuario.TienePermiso(permiso);
     }
 }

@@ -28,7 +28,9 @@ public class AltaTramiteUseCase
     }
 
     public AltaTramiteResponse Ejecutar(AltaTramiteRequest request)
-    {
+    {   var expediente = _expedienteRepo.ObtenerExpedientePorId(request.IdExpediente) 
+                     ?? throw new NotFoundException("El expediente especificado no existe");
+                     
         if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.TramiteAlta))
             throw new AuthorizationException("No posee permiso para crear tramites");
 

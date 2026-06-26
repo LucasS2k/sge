@@ -23,20 +23,17 @@ public class BajaExpedienteUseCase
     }
 
     public BajaExpedienteResponse Ejecutar(BajaExpedienteRequest request)
-    {
-        if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.ExpedienteBaja))
-            throw new AuthorizationException("No posee permiso para dar de baja expedientes");
+{
+    if (!_autorizacionService.PoseeElPermiso(request.IdUsuario, Permiso.ExpedienteBaja))
+        throw new AuthorizationException("No posee permiso para dar de baja expedientes");
 
-        var expediente = _expedienteRepo.ObtenerExpedientePorId(request.IdExpediente)
-            ?? throw new NotFoundException("No existe el expediente solicitado");
+    var expediente = _expedienteRepo.ObtenerExpedientePorId(request.IdExpediente)
+        ?? throw new NotFoundException("No existe el expediente solicitado");
+    //baja en cascada manejada en el context
+    _expedienteRepo.EliminarExpediente(request.IdExpediente);
+    
+    _unidadDeTrabajo.Guardar();
 
-        var tramitesAsociados = _tramiteRepo.ObtenerTramitesPorExpedienteId(request.IdExpediente);
-        foreach (var tramite in tramitesAsociados)
-            _tramiteRepo.EliminarTramite(tramite.Id);
-
-        _expedienteRepo.EliminarExpediente(request.IdExpediente);
-        _unidadDeTrabajo.Guardar();
-
-        return new BajaExpedienteResponse(request.IdExpediente, true);
-    }
+    return new BajaExpedienteResponse(request.IdExpediente, true);
+}
 }

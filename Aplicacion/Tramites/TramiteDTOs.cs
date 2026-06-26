@@ -17,6 +17,7 @@ public record TramiteResponse(
     Guid IdUsuario
 );
 
+
 public record AltaTramiteResponse(
     Guid Id,
     Guid IdExpediente,

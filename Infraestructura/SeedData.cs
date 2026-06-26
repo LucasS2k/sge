@@ -19,7 +19,7 @@ public class SgeSqlite
 
         Console.WriteLine("Inicializando datos");
 
-            var admin = new Usuario("Administrador", "admin@unlp.com", Hash.Calcular("admin123"), true);
+            var admin = new Usuario("Administrador", "admin@sge.com", Hash.Calcular("admin123"), true);
             var usuarioAlgunos = new Usuario("Usuario Algunos", "algunos@unlp.com", Hash.Calcular("algunos123"));
             usuarioAlgunos.AgregarPermiso(Permiso.ExpedienteAlta);
             var usuarioSinPermisos = new Usuario("Usuario Sinpermisos", "sinpermisos@unlp.com", Hash.Calcular("sinpermisos123"));

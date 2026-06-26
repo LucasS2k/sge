@@ -10,6 +10,7 @@ public class Expediente
     public DateTime FechaUltimaModificacion{ get; private set; }
     public Guid UsuarioUltimoCambio{ get; private set; }
     public EstadoExpediente Estado{ get; private set; }
+    public List<Tramite> Tramites { get; private set; } = new();
 //solucion a ef para la falta de constructor sin parametros
     private Expediente() { Caratula = default!; }
 

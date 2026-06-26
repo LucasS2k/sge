@@ -5,13 +5,13 @@ namespace Dominio.Usuarios;
 public class Usuario
 {
     public Guid Id { get; private set; }
-    public string Nombre { get; private set; }
-    public string CorreoElectronico { get; private set; }
-    public string ContrasenaHash { get; private set; }
+    public string Nombre { get; private set; } = null!;
+    public string CorreoElectronico { get; private set; } = null!;
+    public string ContrasenaHash { get; private set; } = null!;
     public bool EsAdministrador { get; private set; }
 
     public List<Permiso> Permisos {get; set;} =new();
-
+    protected Usuario() { }
     public Usuario(string nombre, string correoElectronico, string contrasenaHash, bool esAdministrador = false)
     {
         if (string.IsNullOrWhiteSpace(nombre))
